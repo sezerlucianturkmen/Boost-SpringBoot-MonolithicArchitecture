@@ -1,32 +1,20 @@
 package com.boost.Java3Monolithic.service;
 
+import com.boost.Java3Monolithic.repository.ISatisRepository;
 import com.boost.Java3Monolithic.repository.IUrunRepository;
 import com.boost.Java3Monolithic.repository.entity.Urun;
+import com.boost.Java3Monolithic.utility.ServiceManager;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
-public class UrunService {
-
+public class UrunService extends ServiceManager<Urun,Long> {
     private final IUrunRepository urunRepository;
-
-    public Urun save (Urun urun){
-    return  urunRepository.save(urun);
+    public UrunService(IUrunRepository urunRepository) {
+        super(urunRepository);
+        this.urunRepository=urunRepository;
     }
-    public Urun update (Urun urun){
-        return  urunRepository.save(urun);
-    }
-    public void delete (Urun urun){
-        urunRepository.delete(urun);
-    }
-    public List<Urun> findAll(){
-        return urunRepository.findAll();
-    }
-
-
-
 
 }

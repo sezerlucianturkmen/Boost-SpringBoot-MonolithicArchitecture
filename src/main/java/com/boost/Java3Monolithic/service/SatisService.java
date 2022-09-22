@@ -2,29 +2,19 @@ package com.boost.Java3Monolithic.service;
 
 import com.boost.Java3Monolithic.repository.ISatisRepository;
 import com.boost.Java3Monolithic.repository.entity.Satis;
+import com.boost.Java3Monolithic.utility.ServiceManager;
 import lombok.RequiredArgsConstructor;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 
 @Service
-@RequiredArgsConstructor
-public class SatisService {
-   
+public class SatisService extends ServiceManager<Satis,Long> {
     private final ISatisRepository satisRepository;
-
-    public Satis save (Satis satis){
-    return  satisRepository.save(satis);
+    public SatisService(ISatisRepository satisRepository) {
+        super(satisRepository);
+        this.satisRepository=satisRepository;
     }
-    public Satis update (Satis satis){
-        return  satisRepository.save(satis);
-    }
-    public void delete (Satis satis){
-        satisRepository.delete(satis);
-    }
-    public List<Satis> findAll(){
-        return satisRepository.findAll();
-    }
-
 
 }
