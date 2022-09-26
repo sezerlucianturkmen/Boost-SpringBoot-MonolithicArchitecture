@@ -1,6 +1,8 @@
 package com.boost.Java3Monolithic.service;
 
+import com.boost.Java3Monolithic.dto.request.UrunSaveRequestDto;
 import com.boost.Java3Monolithic.dto.response.UrunGetFindByIdResponseDto;
+import com.boost.Java3Monolithic.mapper.UrunMapper;
 import com.boost.Java3Monolithic.repository.IUrunRepository;
 import com.boost.Java3Monolithic.repository.entity.Urun;
 import com.boost.Java3Monolithic.utility.ServiceManager;
@@ -21,4 +23,10 @@ public class UrunService extends ServiceManager<Urun,Long> {
                 .marka(urun.getMarka())
                 .model(urun.getModel()).build();
     }
+    public Urun save(UrunSaveRequestDto dto){
+        Urun urun=UrunMapper.INSTANCE.toUrun(dto);
+        urunRepository.save(urun);
+        return urun;
+    }
+
 }

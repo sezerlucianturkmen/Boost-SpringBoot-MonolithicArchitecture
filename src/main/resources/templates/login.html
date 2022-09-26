@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login Page</title>
+</head>
+<body>
+<h1>Giris Sayfasi</h1><br><br>
+<form action="dologin" method="post">
+    <label th:text="${kullanicibl}"></label><br>
+    <input name="txtkullaniciadi"/><br>
+    <label th:text="${sifrebl}"></label><br>
+    <input name="txtsifre"/><br>
+    <button type="submit">Giris</button><br><br>
+</form>
+
+<p th:text="${firma}"></p><br>
+</body>
+</html>

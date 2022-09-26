@@ -67,9 +67,7 @@ public class MusteriService {
         return musteriRepository.saveAll(musteriler);
     }
 
-    public List<VwMusteri> getMusteriView(){
-        return musteriRepository.findAllView();
-    }
+
 
     public MusteriFindByIdResponseDto findByIdDto(Long id){
         Musteri musteri = musteriRepository.getReferenceById(id);

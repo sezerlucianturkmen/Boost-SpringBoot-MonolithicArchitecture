@@ -37,10 +37,6 @@ public class MusteriController {
         return ResponseEntity.ok(musteriService.findAll());
     }
 
-    @GetMapping("/findallview")
-    public ResponseEntity<List<VwMusteri>> findAllView(){
-        return ResponseEntity.ok(musteriService.getMusteriView());
-    }
 
 
     /**
