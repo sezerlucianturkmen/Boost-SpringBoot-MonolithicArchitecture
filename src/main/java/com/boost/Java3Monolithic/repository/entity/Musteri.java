@@ -1,32 +1,24 @@
 package com.boost.Java3Monolithic.repository.entity;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
-<<<<<<< HEAD
-=======
+
+import lombok.*;
 import lombok.experimental.SuperBuilder;
->>>>>>> 63f0fc8 (Lesson & Learn)
 
 import javax.persistence.*;
 
-@Table(name="tblmusteri")
+@Table(name = "tblmusteri")
 @Entity
-@AllArgsConstructor//parametreli tüm contructorları yapar
-@NoArgsConstructor//parametresiz const
-<<<<<<< HEAD
+@AllArgsConstructor // parametreli constructor
+@NoArgsConstructor // default constructor
 @Data // getter setter
-@Builder // builder pattern
-public class Musteri {
-=======
-@SuperBuilder// builder pattern
-@Data // getter setter
-
+@SuperBuilder // builder pattern
 public class Musteri extends Default {
->>>>>>> 63f0fc8 (Lesson & Learn)
+    /**
+     * Tüm property lerin getter ve setter ları eklenmeli.
+     * Parametreli ve Parametresiz constructor.
+     */
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String ad;
     String soyad;
@@ -35,9 +27,25 @@ public class Musteri extends Default {
     int dogumtarihi;
     String email;
     String username;
-<<<<<<< HEAD
-    boolean isactive;
-=======
+    String psw;
+    String il;
+    String ilce;
+    String mahalle;
+    String sokak;
+    String postakodu;
+    String cinsiyet;
+    String tcno;
+    String dogumyeri;
+    String medenihali;
+    String meslek;
+    String uyruk;
+    boolean bildirimlerikapat;
+    boolean aramalardagorunmesin;
+    boolean hesaponaylandi;
+    /**
+     * 50 adet daha parametre olsun.
+     */
 
->>>>>>> 63f0fc8 (Lesson & Learn)
+
+
 }

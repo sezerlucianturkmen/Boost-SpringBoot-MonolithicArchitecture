@@ -1,26 +1,15 @@
 package com.boost.Java3Monolithic.utility;
 
-import com.boost.Java3Monolithic.repository.IMusteriRepository;
-import com.boost.Java3Monolithic.repository.IUrunRepository;
+
 import com.boost.Java3Monolithic.repository.entity.Musteri;
 import com.boost.Java3Monolithic.repository.entity.Urun;
-
 import com.boost.Java3Monolithic.service.MusteriService;
 import com.boost.Java3Monolithic.service.UrunService;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.util.Arrays;
-
-
-
-@RequiredArgsConstructor
-@Component
-public class DefaultDataImpl {
-    private final IMusteriRepository musteriRepository;
-    private final IUrunRepository urunRepository;
 
 /**
  * Uyglama ayağa kalarken veritabanına default verileri eklemek için kullanılır.
@@ -32,7 +21,6 @@ public class DefaultDataImpl {
 
     private final MusteriService musteriService;
     private final UrunService urunService;
-
     @PostConstruct
     private void create(){
         saveMusteri();
@@ -72,11 +60,7 @@ public class DefaultDataImpl {
                 .model("S Model")
                 .stok(125)
                 .build();
-
-        urunRepository.saveAll(Arrays.asList(urun, urun2,urun3,urun4));
-
         urunService.saveAll(Arrays.asList(urun, urun2,urun3,urun4));
-
     }
 
     private void saveMusteri(){
@@ -116,14 +100,10 @@ public class DefaultDataImpl {
                 .telefon("0532 785 45 98")
                 .dogumtarihi(1991)
                 .email("ayse@gmail.com").build();
-
-        musteriRepository.saveAll(Arrays.asList(musteri,musteri1,musteri2,musteri3,musteri4));
+        musteriService.saveAll(Arrays.asList(musteri,musteri1,musteri2,musteri3,musteri4));
     }
 
 }
-
-        musteriService.saveAll(Arrays.asList(musteri,musteri1,musteri2,musteri3,musteri4));
-    }
 
 }
 

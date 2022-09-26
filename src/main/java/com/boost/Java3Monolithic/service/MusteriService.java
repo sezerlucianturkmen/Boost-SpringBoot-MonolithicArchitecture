@@ -1,35 +1,16 @@
 package com.boost.Java3Monolithic.service;
 
+import com.boost.Java3Monolithic.dto.response.MusteriFindByIdResponseDto;
+import com.boost.Java3Monolithic.mapper.MusteriMapper;
 import com.boost.Java3Monolithic.repository.IMusteriRepository;
 import com.boost.Java3Monolithic.repository.entity.Musteri;
-
 import com.boost.Java3Monolithic.repository.entity.view.VwMusteri;
-
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-
-
-@Service
-@RequiredArgsConstructor
-public class MusteriService {
-    //@Autowired //interface olan repositoryden bir instance alamaızı sağlar
-    //IMusteriRepository musteriRepository;
-
-    //public MusteriService(IMusteriRepository musteriRepository){
-    //this.musteriRepository=musteriRepository
-
-    private final IMusteriRepository musteriRepository;
-
-    public Musteri save (Musteri musteri){
-    return  musteriRepository.save(musteri);
-    }
-    public Musteri update (Musteri musteri){
-        return  musteriRepository.save(musteri);
-    }
-    public void delete (Musteri musteri){
+import java.util.stream.Collectors;
 
 /**
  * !! DİKKAT !!
@@ -69,21 +50,11 @@ public class MusteriService {
         return musteriRepository.save(musteri);
     }
     public void delete(Musteri musteri){
-
         musteriRepository.delete(musteri);
     }
     public List<Musteri> findAll(){
         return musteriRepository.findAll();
     }
-
-
-    //queries
-    public List<Musteri> findByAdres(String adres){
-        return musteriRepository.findByAdres(adres);
-     }
-
-
-}
 
     public List<Musteri> findByAdres(String adres){
         return musteriRepository.findByAdres(adres);
@@ -99,5 +70,28 @@ public class MusteriService {
     public List<VwMusteri> getMusteriView(){
         return musteriRepository.findAllView();
     }
-}
 
+    public MusteriFindByIdResponseDto findByIdDto(Long id){
+        Musteri musteri = musteriRepository.getReferenceById(id);
+        return  MusteriMapper.INSTANCE.toMusteriFindByIdResponseDto(musteri);
+        /*
+        return MusteriFindByIdResponseDto.builder()
+                .ad(musteri.getAd())
+                .il(musteri.getIl())
+                .dogumtarihi(musteri.getDogumtarihi())
+                .aramalardagorunmesin(musteri.isAramalardagorunmesin())
+                .email(musteri.getEposta())
+                .bildirimlerikapat(musteri.isBildirimlerikapat())
+                .ilce(musteri.getIlce())
+                .mahalle(musteri.getMahalle())
+                .sokak(musteri.getSokak())
+                .soyad(musteri.getSoyad())
+                .telefon(musteri.getTelefon())
+                .medenihali(musteri.getMedenihali())
+                .meslek(musteri.getMeslek())
+                .build();
+                */
+
+    }
+
+}

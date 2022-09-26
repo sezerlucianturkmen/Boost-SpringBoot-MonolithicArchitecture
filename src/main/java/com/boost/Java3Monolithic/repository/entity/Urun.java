@@ -1,5 +1,4 @@
 package com.boost.Java3Monolithic.repository.entity;
-
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -8,7 +7,7 @@ import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 
-@Table(name="tblurun")
+@Table(name = "tblurun")
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
@@ -16,14 +15,11 @@ import javax.persistence.*;
 @SuperBuilder
 public class Urun extends Default {
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
     String ad;
     String marka;
     String model;
     Double fiyat;
     Integer stok;
-
-
-
 }

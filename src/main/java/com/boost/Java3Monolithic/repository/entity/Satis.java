@@ -8,16 +8,21 @@ import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
 
-@Table(name="tblsatis")
+@Table(name = "tblsatis")
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @SuperBuilder
 public class Satis extends Default {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     Long id;
-    String ad;
+    Long musterid;
+    Long urunid;
+    Double adet;
+    Double fiyat;
+    Double toplamfiyat;
+    Long tarih;
+
 }
