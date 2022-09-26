@@ -1,0 +1,2 @@
+# SPRING BOOT - MONOLITHIC ARCHITECTURE 
+This repository includes: Supporting with SpringBoot, Monolithic software is designed to be self-contained, wherein the program's components or functions are tightly coupled, like in modular software programs.

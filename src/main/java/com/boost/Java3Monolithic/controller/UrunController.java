@@ -1,6 +1,7 @@
 package com.boost.Java3Monolithic.controller;
 
 
+import com.boost.Java3Monolithic.dto.request.UrunSaveRequestDto;
 import com.boost.Java3Monolithic.dto.response.UrunGetFindByIdResponseDto;
 import com.boost.Java3Monolithic.repository.entity.Urun;
 import com.boost.Java3Monolithic.service.UrunService;
@@ -37,6 +38,12 @@ public class UrunController {
         urunService.save(urun);
         return "Ürün Kayıtedildi.";
     }
+    @GetMapping(SAVE_DTO)
+    public String save(UrunSaveRequestDto dto){
+        urunService.save(dto);
+        return "Urun kaydedildi.";
+    }
+
 
     /**
      * http://localhost:9090/mkv1/api/urun/getall
