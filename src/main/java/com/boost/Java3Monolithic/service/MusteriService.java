@@ -2,16 +2,15 @@ package com.boost.Java3Monolithic.service;
 
 import com.boost.Java3Monolithic.repository.IMusteriRepository;
 import com.boost.Java3Monolithic.repository.entity.Musteri;
-<<<<<<< HEAD
-=======
+
 import com.boost.Java3Monolithic.repository.entity.view.VwMusteri;
->>>>>>> 63f0fc8 (Lesson & Learn)
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-<<<<<<< HEAD
+
 
 @Service
 @RequiredArgsConstructor
@@ -31,7 +30,7 @@ public class MusteriService {
         return  musteriRepository.save(musteri);
     }
     public void delete (Musteri musteri){
-=======
+
 /**
  * !! DİKKAT !!
  * Servisi işaretlemeyi unutmaytın.
@@ -70,14 +69,14 @@ public class MusteriService {
         return musteriRepository.save(musteri);
     }
     public void delete(Musteri musteri){
->>>>>>> 63f0fc8 (Lesson & Learn)
+
         musteriRepository.delete(musteri);
     }
     public List<Musteri> findAll(){
         return musteriRepository.findAll();
     }
 
-<<<<<<< HEAD
+
     //queries
     public List<Musteri> findByAdres(String adres){
         return musteriRepository.findByAdres(adres);
@@ -85,7 +84,7 @@ public class MusteriService {
 
 
 }
-=======
+
     public List<Musteri> findByAdres(String adres){
         return musteriRepository.findByAdres(adres);
     }
@@ -101,4 +100,4 @@ public class MusteriService {
         return musteriRepository.findAllView();
     }
 }
->>>>>>> 63f0fc8 (Lesson & Learn)
+

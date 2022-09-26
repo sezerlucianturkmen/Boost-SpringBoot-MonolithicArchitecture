@@ -4,25 +4,24 @@ import com.boost.Java3Monolithic.repository.IMusteriRepository;
 import com.boost.Java3Monolithic.repository.IUrunRepository;
 import com.boost.Java3Monolithic.repository.entity.Musteri;
 import com.boost.Java3Monolithic.repository.entity.Urun;
-<<<<<<< HEAD
-=======
+
 import com.boost.Java3Monolithic.service.MusteriService;
 import com.boost.Java3Monolithic.service.UrunService;
->>>>>>> 63f0fc8 (Lesson & Learn)
+
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Component;
 
 import javax.annotation.PostConstruct;
 import java.util.Arrays;
 
-<<<<<<< HEAD
+
 
 @RequiredArgsConstructor
 @Component
 public class DefaultDataImpl {
     private final IMusteriRepository musteriRepository;
     private final IUrunRepository urunRepository;
-=======
+
 /**
  * Uyglama ayağa kalarken veritabanına default verileri eklemek için kullanılır.
  * ancak bu sınıfın otomatik çalışması gerekecek.
@@ -33,7 +32,7 @@ public class DefaultDataImpl {
 
     private final MusteriService musteriService;
     private final UrunService urunService;
->>>>>>> 63f0fc8 (Lesson & Learn)
+
     @PostConstruct
     private void create(){
         saveMusteri();
@@ -73,11 +72,11 @@ public class DefaultDataImpl {
                 .model("S Model")
                 .stok(125)
                 .build();
-<<<<<<< HEAD
+
         urunRepository.saveAll(Arrays.asList(urun, urun2,urun3,urun4));
-=======
+
         urunService.saveAll(Arrays.asList(urun, urun2,urun3,urun4));
->>>>>>> 63f0fc8 (Lesson & Learn)
+
     }
 
     private void saveMusteri(){
@@ -117,14 +116,14 @@ public class DefaultDataImpl {
                 .telefon("0532 785 45 98")
                 .dogumtarihi(1991)
                 .email("ayse@gmail.com").build();
-<<<<<<< HEAD
+
         musteriRepository.saveAll(Arrays.asList(musteri,musteri1,musteri2,musteri3,musteri4));
     }
 
 }
-=======
+
         musteriService.saveAll(Arrays.asList(musteri,musteri1,musteri2,musteri3,musteri4));
     }
 
 }
->>>>>>> 63f0fc8 (Lesson & Learn)
+
