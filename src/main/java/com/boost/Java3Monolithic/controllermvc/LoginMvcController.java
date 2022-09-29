@@ -14,36 +14,48 @@ import org.springframework.web.servlet.ModelAndView;
 @RequiredArgsConstructor
 public class LoginMvcController {
 
-    MusteriService musteriService;
+    private final MusteriService musteriService;
 
+    // http://localhost:9090/login/home
     @GetMapping("/loginpage")
     public ModelAndView loginGirisSayfasi(){
-        String ka="kullanici adi";
-        String sfr="Sifre";
-        ModelAndView modelAndView=new ModelAndView();
+        /**
+         * 1- Önce ModelAndView nesnesi oluşturulur.
+         * 2- Model nesnesinin hangi sayfayı yöneteceği belirlenir.
+         */
+        String ka= "Kullanıcı Adı";
+        String sfr= "Şifre";
+        ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("login");
-        modelAndView.addObject("firma","bilgeadam Java 3 grubu");
-        modelAndView.addObject("kullanicibl",ka);
-        modelAndView.addObject("sifrebl",sfr);
+        modelAndView
+                .addObject("firma",
+                        "Bilgeadam A.Ş.");
+        modelAndView.addObject("kullanicilbl",ka);
+        modelAndView.addObject("sifrelbl",sfr);
         return modelAndView;
     }
-    @PostMapping("/dologin") // action daki isim ile aynı olması gerekir
+
+    @PostMapping("/doLogin")
     public ModelAndView doLogin(String txtkullaniciadi,String txtsifre){
-        if(txtkullaniciadi.equals("admin")&&txtsifre.equals("123")){
-            System.out.println("Giris basarili");
+        if(musteriService.isExistUser(txtkullaniciadi,txtsifre)){
+            return new ModelAndView("redirect:/home");
         }else{
-            System.out.println("Kullanici adi veya sifre hatali");
+            System.out.println("Kullanıcıadı veya şifre hatalı");
         }
         return null;
     }
+
+    // http://localhost:9090/login/registerpage
     @GetMapping("/registerpage")
     public ModelAndView register(){
-        ModelAndView modelAndView=new ModelAndView();
+        //return new ModelAndView("register");
+        ModelAndView modelAndView = new ModelAndView();
         modelAndView.setViewName("register");
         return modelAndView;
     }
-    @GetMapping("/doregister")
-    public ModelAndView doRegister(String email, String username, String password){
+    @PostMapping("/doregister")
+    public ModelAndView doRegister(String email,String username,
+                                   String password){
         musteriService.save(
                 Musteri.builder()
                         .email(email)

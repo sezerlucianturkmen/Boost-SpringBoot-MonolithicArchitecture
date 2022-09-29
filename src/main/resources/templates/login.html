@@ -1,19 +1,22 @@
 <!DOCTYPE html>
-<html  xmlns:th="http://www.thymeleaf.org" lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
     <title>Login Page</title>
 </head>
 <body>
-<h1>Giris Sayfasi</h1><br><br>
-<form action="dologin" method="post">
-    <label th:text="${kullanicibl}"></label><br>
+<h1>Giriş Sayfası</h1>
+<br>
+<form action="doLogin" method="post">
+    <label th:text="${kullanicilbl}"></label><br>
     <input name="txtkullaniciadi"/><br>
-    <label th:text="${sifrebl}"></label><br>
+    <label th:text="${sifrelbl}"></label><br>
     <input name="txtsifre"/><br>
-    <button type="submit">Giris</button><br><br>
+    <br>
+    <button type="submit">Giriş</button>
 </form>
 
-<p th:text="${firma}"></p><br>
+<br><br><br>
+<p th:text="${firma}"></p>
 </body>
 </html>

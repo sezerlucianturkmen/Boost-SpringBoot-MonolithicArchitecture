@@ -32,12 +32,18 @@ public class MusteriService {
     private final IMusteriRepository musteriRepository;
 
 
+    public Boolean isExistUser(String username,String password){
+        return musteriRepository.isExistMusteri(username,password);
+    }
+
+
     /**
      * Dİkkat, müşterityi kaydetmek içni veridğiniz de id si yoktur.
      * @param musteri
      * @return
      */
     public Musteri save(Musteri musteri){
+        musteri.setCreatedate(System.currentTimeMillis());
         return musteriRepository.save(musteri);
     }
 

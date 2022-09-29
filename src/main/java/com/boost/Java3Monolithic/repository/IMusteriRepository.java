@@ -21,18 +21,17 @@ public interface IMusteriRepository extends JpaRepository<Musteri,Long> {
 
   /**
    * !! DİKKAT !!
-   * Repository sınıfları içinde sorgu yazmak için özel kelimeleri kullanıyorsunuz.
-   * 1- find : kelimesi yazılır
-   * 2- By :  ne için arayacağınızı belirtir. kullanacağınız entity propertisinin adını yazarsınız.
-   * 3- [entity->değişkenadı] : entity değişken adını yazarsınız.
-   * 4- method eğer parametre alıyor ise yazılan metne uygun bir
-   * değişken talep edilir. talep edilen değişkenin adı önemli
-   * değildir.
-   * 5- son olarakta methodun geri dönüş tipini belirtirsiniz.
+   *  Repository sınıfları içinde sorgu yazmak için özel kelimeleri kullanıyorsunuz.
+   *  1- find : kelimesi yazılır
+   *  2- By :  ne için arayacağınızı belirtir. kullanacağınız entity propertisinin adını yazarsınız.
+   *  3- [entity->değişkenadı] : entity değişken adını yazarsınız.
+   *  4- method eğer parametre alıyor ise yazılan metne uygun bir
+   *  değişken talep edilir. talep edilen değişkenin adı önemli
+   *  değildir.
+   *  5- son olarakta methodun geri dönüş tipini belirtirsiniz.
    */
   // select * from tblmusteri where username = ?
   Musteri findByUsername(String merhababenbir_degiskenim);
-
   // select * from tblmusteri where adres = ?
   List<Musteri> findByAdres(String adres);
 
@@ -43,7 +42,6 @@ public interface IMusteriRepository extends JpaRepository<Musteri,Long> {
    * select * from tblmusteri where dogumtarihi > ?
    */
   List<Musteri> findByDogumtarihiGreaterThan(int dogumtarihi);
-
   /**
    * Adında belli bir karakter aranılan kişileri getir.
    * select * from tblmusteri where ad like '%?%'
@@ -62,26 +60,22 @@ public interface IMusteriRepository extends JpaRepository<Musteri,Long> {
    * and ile birleştirdiğiniz sorgularda sıralama önemlidir.
    */
   List<Musteri> findAllByAdStartingWithAndAdresStartingWith(String ad, String adres);
-
-  Musteri findByAdAndSoyadAndTelefon(String musteriadi, String soyad, String telefon);
+  Musteri findByAdAndSoyadAndTelefon(String musteriadi,String soyad,String telefon);
 
   /**
    * sorgularınız size her zaman sonuç dönmez bu nedenle null gelen sonuçlarda alabilirsiniz.
+   *
    */
   Optional<Musteri> findOptionalByUsername(String username);
-
   Optional<List<Musteri>> findAllOptionalByAdres(String adres);
 
   /**
    * ASC -> A...Z
    * DESC -> Z..A
-   *
    * @return
    */
   List<Musteri> findByOrderByDogumtarihi();
-
   List<Musteri> findByOrderByDogumtarihiDesc();
-
   Musteri findTopByOrderByDogumtarihiDesc(); // sadece 1 kayıt getirir.
 
   /**
@@ -92,14 +86,12 @@ public interface IMusteriRepository extends JpaRepository<Musteri,Long> {
    * @return
    */
   List<Musteri> findTop3ByOrderByDogumtarihiDesc(); // ilk 3 ü getirir.
-
   Optional<List<Musteri>> findTop3OptionalByOrderByDogumtarihiDesc(); // ilk 3 ü getirir. Optional olarak döner.
 
   /**
    * select * from tblmusteri where dogumtarihi > ? and dogumtarihi < ?
    */
   List<Musteri> findAllByDogumtarihiBetween(int baslangic, int bitis);
-
   List<Musteri> findAllByAdresAndDogumtarihiBetween(String adres, int baslangic, int bitis);
 
   /**
@@ -117,7 +109,6 @@ public interface IMusteriRepository extends JpaRepository<Musteri,Long> {
    * 3- ad ve soyadına göre ara ad ve soyad büyük küçük harf duyarlı olmasın
    */
   Optional<List<Musteri>> findAllOptionalByAdAndSoyad(String ad, String soyad);
-
   Optional<List<Musteri>> findAllOptionalByAdIgnoreCaseAndSoyadIgnoreCase(String ad, String soyad);
 
   /**
@@ -130,7 +121,6 @@ public interface IMusteriRepository extends JpaRepository<Musteri,Long> {
    * 555XXXXXXX
    */
   Optional<List<Musteri>> findAllOptionalByTelefonStartingWith(String telefon);
-
   /**
    * XXX555XXXX
    */
@@ -147,17 +137,14 @@ public interface IMusteriRepository extends JpaRepository<Musteri,Long> {
    */
   @Query("select m from Musteri m where m.email= ?1")
   Musteri senBulEmailAdresineGore(String email);
-
   @Query("select mst from Musteri mst where mst.ad= ?1 and mst.soyad= ?2")
-  Musteri bulAdSoyad(String ad, String soyad);
-
+  Musteri bulAdSoyad(String ad,String soyad);
   /**
    * Native SQL kullanımı
    * NOT: Table adı içni kontrol sağlayalım.
    */
-  @Query(value = "select * from Musteri where email= ?1", nativeQuery = true)
+  @Query(value = "select * from Musteri where email= ?1",nativeQuery = true)
   List<Musteri> getirEmailAdresineGore(String email);
-
   /**
    * Parametreyi belirterek sorgu yapmak
    * findByNameAndEmail("muhammet","muhammet@gmail.com")
@@ -168,5 +155,18 @@ public interface IMusteriRepository extends JpaRepository<Musteri,Long> {
           @Param("paramad") String musteriAdi,
           @Param("paramemail") String musteriEmaili
   );
-}
 
+
+  Musteri findByUsernameAndPsw(String username, String password);
+  Optional<Musteri> findOptionalByUsernameAndPsw(String username, String password);
+
+  /**
+   * Muhammet -> muhammet
+   * @param username
+   * @param password
+   * @return
+   */
+  @Query("select COUNT(m)>0 from Musteri m where UPPER(m.username)=UPPER(?1) and m.psw=?2")
+  Boolean isExistMusteri(String username,String password);
+
+}
